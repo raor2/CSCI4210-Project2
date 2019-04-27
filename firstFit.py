@@ -1,7 +1,6 @@
 from Process import Process
 import sys
 
-
 AQ = []
 EQ = []
 framesPerLine = int(sys.argv[1])
@@ -38,9 +37,10 @@ def printMemory():
 
 
 def defrag():
+    pidMoved = []
     totalNumMoves = 0
     while 1:
-        #print(memory)
+        # print(memory)
         stateChange = 0
         flag = 0
         numMove = 0
@@ -61,33 +61,38 @@ def defrag():
                 flag = 1
                 numMove += 1
             elif memory[x] == '.' and flag == 1:
-                numMove+=1
+                numMove += 1
             elif memory[x] != '.' and flag == 1:
                 flag = 0
                 currID = memory[x]
                 break
-            i+=1
+            i += 1
         if flag == 1:
-            return totalNumMoves
+            return totalNumMoves, pidMoved
         while 1:
             if i == totalMemSize or memory[i] != currID:
                 break
             else:
-                memory[i-numMove] = memory[i]
+                if memory[i] not in pidMoved:
+                    pidMoved.append(memory[i])
+                memory[i - numMove] = memory[i]
                 memory[i] = '.'
                 totalNumMoves += 1
-            i+=1
+
+            i += 1
 
 
 def initMemory():
     for i in range(totalMemSize):
         memory.append('.')
 
+
 def printParams():
     print(framesPerLine)
     print(totalMemSize)
     print(fileName)
     print(memMoveTime)
+
 
 def parsefile(filename):
     data = open(filename).read()
@@ -129,7 +134,6 @@ def findFirstSlot(size):
             currentSize += 1
             startingIndex = i
 
-
         elif memory[i] == '.' and flag == 1:
             currentSize += 1
             if currentSize >= size:
@@ -144,18 +148,31 @@ def sortArrivalQueue():
     AQ.sort(key=lambda x: x.arrivalTime, reverse=False)
 
 
+def firstFitPlace(p, t):
+    s = p.memSize
+    i = findFirstSlot(s)
+    for x in range(i, (i + s)):
+        memory[x] = p.id
+
+
 def sortExitQueue():
     EQ.sort(key=lambda x: x[1], reverse=False)
 
-def arrive(p,t):
-    print("time "+ t +"ms: Process" + p.id + " arrived  (requires " + p.memSize + " frames)")
 
-def exit(p,t):
+def arrive(p, t):
+    print("time " + t + "ms: Process" + p.id + " arrived  (requires " + p.memSize + " frames)")
+
+
+def exit(p, t):
     print("time " + t + "ms: Process " + p[0] + " removed:")
     printMemory()
 
+
 def simulate():
     print("time 0ms: Simulator started (Contiguous -- First-Fit)")
+
+    while len(AQ) > 0 or len(EQ) > 0:
+        if(len(EQ) > 0 and time == EQ[0][1]):
 
 
 
@@ -165,5 +182,3 @@ printMemory()
 # parsefile(fileName)
 # print("Done printing")
 # sortArrivalQueue()
-
-
