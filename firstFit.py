@@ -1,6 +1,7 @@
 from Process import Process
 import sys
 
+
 AQ = []
 EQ = []
 
@@ -26,8 +27,14 @@ def sortArrivalQueue():
     AQ.sort(key=lambda x: x.arrivalTime, reverse=False)
 
 
+def sortExitQueue():
+    EQ.sort(key=lambda x: x[1], reverse=False)
+
 def simulate():
     time = 0
+
+
+
 
 
 parsefile("p2-input03.txt")
