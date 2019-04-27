@@ -11,6 +11,7 @@ largestSlot = totalMemSize
 fileName = sys.argv[3]
 memMoveTime = int(sys.argv[4])
 memory = []
+time = 0
 
 
 def printMemory():
@@ -34,6 +35,7 @@ def printMemory():
         p += "="
 
     print(p)
+
 
 def defrag():
     totalNumMoves = 0
@@ -83,11 +85,23 @@ def parsefile(filename):
             for i in range(2, len(line)):
                 term = line[i].split('/')
                 AQ.append(Process(line[0], int(line[1]), int(term[0]), int(term[1])))
+                EQ.append((line[0], int(term[1])))
 
 
 def printArrivalQueueContents():
     for p in AQ:
         print(p)
+
+
+def printExitQueueContents():
+    for x in EQ:
+        print(x)
+
+
+def removeFromMemory(id):
+    for i in range(totalMemSize):
+        if memory[i] == id:
+            memory[i] = '.'
 
 
 def sortArrivalQueue():
@@ -97,8 +111,12 @@ def sortArrivalQueue():
 def sortExitQueue():
     EQ.sort(key=lambda x: x[1], reverse=False)
 
+def arrive(p,t):
+    print("time "+ t +"ms: Process" + p.id + " arrived  (requires " + p.memSize + " frames)")
+
 def simulate():
-    time = 0
+    print("time 0ms: Simulator started (Contiguous -- First-Fit)")
+
 
 
 initMemory()
