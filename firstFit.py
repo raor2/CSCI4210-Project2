@@ -4,7 +4,53 @@ import sys
 
 AQ = []
 EQ = []
+framesPerLine = sys.argv[1]
+totalMemSize = int(sys.argv[2])
+freeMemory = totalMemSize
+largestSlot = totalMemSize
+fileName = sys.argv[3]
+memMoveTime = int(sys.argv[4])
+memory = []
 
+
+def defrag():
+    totalNumMoves = 0
+    while 1:
+        flag = 0
+        numMove = 0
+        currID = '.'
+        i = 0
+        for x in range(totalMemSize):
+            if memory[x] == '.' and flag == 0:
+                flag = 1
+                numMove += 1
+            elif memory[x] == '.' and flag == 1:
+                numMove+=1
+            elif memory[x] != '.' and flag == 1:
+                flag = 0
+                currID = memory[x]
+                break
+            i+=1
+        if flag == 1:
+            return totalNumMoves
+        while 1:
+            if i == totalMemSize or memory[i] != currID:
+                break
+            else:
+                memory[i-numMove] = memory[i]
+                memory[i] = '.'
+                totalNumMoves += 1
+            i+=1
+
+def initMemory():
+    for i in range(totalMemSize):
+        memory.append('.')
+
+def printParams():
+    print(framesPerLine)
+    print(totalMemSize)
+    print(fileName)
+    print(memMoveTime)
 
 def parsefile(filename):
     data = open(filename).read()
@@ -12,7 +58,6 @@ def parsefile(filename):
     for line in data:
         if line != "":
             line = line.split(' ')
-            print(line)
             for i in range(2, len(line)):
                 term = line[i].split('/')
                 AQ.append(Process(line[0], int(line[1]), int(term[0]), int(term[1])))
@@ -34,11 +79,10 @@ def simulate():
     time = 0
 
 
-
-
-
-parsefile("p2-input03.txt")
+initMemory()
+printParams()
+parsefile(fileName)
 print("Done printing")
 sortArrivalQueue()
-printArrivalQueueContents()
+
 
