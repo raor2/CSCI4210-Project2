@@ -114,6 +114,10 @@ def sortExitQueue():
 def arrive(p,t):
     print("time "+ t +"ms: Process" + p.id + " arrived  (requires " + p.memSize + " frames)")
 
+def exit(p,t):
+    print("time " + t + "ms: Process " + p[0] + " removed:")
+    printMemory()
+
 def simulate():
     print("time 0ms: Simulator started (Contiguous -- First-Fit)")
 

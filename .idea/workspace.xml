@@ -22,11 +22,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/firstFit.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1328">
-              <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
+            <state relative-caret-position="230">
+              <caret line="117" column="60" lean-forward="true" selection-start-line="117" selection-start-column="60" selection-end-line="117" selection-end-column="60" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
               </folding>
@@ -34,11 +34,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="50" selection-start-line="50" selection-end-line="70" selection-end-column="12" />
+            <state relative-caret-position="45">
+              <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -52,8 +52,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Process.py" />
-        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.py" />
         <option value="$PROJECT_DIR$/firstFit.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.py" />
       </list>
     </option>
   </component>
@@ -119,7 +119,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.firstFit">
+  <component name="RunManager" selected="Python.scratch">
     <configuration name="firstFit" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Project2" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -168,8 +168,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.firstFit" />
         <item itemvalue="Python.scratch" />
+        <item itemvalue="Python.firstFit" />
       </list>
     </recent_temporary>
   </component>
@@ -212,7 +212,21 @@
       <option name="project" value="LOCAL" />
       <updated>1556393070775</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added Print Function">
+      <created>1556395154877</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1556395154877</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Updated FirstFit">
+      <created>1556398536373</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1556398536373</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -228,7 +242,7 @@
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.47855228" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2600536" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -261,7 +275,9 @@
     <MESSAGE value="Added test input file" />
     <MESSAGE value="Updated First-Fit" />
     <MESSAGE value="Added Defrag" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Defrag" />
+    <MESSAGE value="Added Print Function" />
+    <MESSAGE value="Updated FirstFit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated FirstFit" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Process.py">
@@ -271,20 +287,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="50" selection-start-line="50" selection-end-line="70" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/firstFit.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1328">
-          <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
+        <state relative-caret-position="230">
+          <caret line="117" column="60" lean-forward="true" selection-start-line="117" selection-start-column="60" selection-end-line="117" selection-end-column="60" />
           <folding>
             <element signature="e#0#27#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
         </state>
       </provider>
     </entry>
