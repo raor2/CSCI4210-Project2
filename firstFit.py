@@ -40,10 +40,22 @@ def printMemory():
 def defrag():
     totalNumMoves = 0
     while 1:
+        #print(memory)
+        stateChange = 0
         flag = 0
         numMove = 0
         currID = '.'
         i = 0
+        for x in range(totalMemSize):
+            if memory[x] == '.' and flag == 0:
+                stateChange = 1
+                flag = 1
+            if flag == 1 and memory[x] != '.':
+                stateChange = 1
+                break
+        if stateChange == 0:
+            return 0
+        flag = 0
         for x in range(totalMemSize):
             if memory[x] == '.' and flag == 0:
                 flag = 1
@@ -65,6 +77,7 @@ def defrag():
                 memory[i] = '.'
                 totalNumMoves += 1
             i+=1
+
 
 def initMemory():
     for i in range(totalMemSize):
@@ -102,6 +115,29 @@ def removeFromMemory(id):
     for i in range(totalMemSize):
         if memory[i] == id:
             memory[i] = '.'
+
+
+def findFirstSlot(size):
+    startingIndex = 0
+    currentSize = 0
+    flag = 0
+
+    for i in range(totalMemSize):
+        print(startingIndex)
+        if memory[i] == '.' and flag == 0:
+            flag = 1
+            currentSize += 1
+            startingIndex = i
+
+
+        elif memory[i] == '.' and flag == 1:
+            currentSize += 1
+            if currentSize >= size:
+                return startingIndex
+        elif memory[i] != '.' and flag == 1:
+            flag = 0
+            if currentSize == size:
+                return startingIndex
 
 
 def sortArrivalQueue():
