@@ -4,7 +4,7 @@ import sys
 
 AQ = []
 EQ = []
-framesPerLine = sys.argv[1]
+framesPerLine = int(sys.argv[1])
 totalMemSize = int(sys.argv[2])
 freeMemory = totalMemSize
 largestSlot = totalMemSize
@@ -12,6 +12,28 @@ fileName = sys.argv[3]
 memMoveTime = int(sys.argv[4])
 memory = []
 
+
+def printMemory():
+    i = 0
+    j = 0
+    p = ""
+    for a in range(framesPerLine):
+        p += "="
+    p += "\n"
+    while 1:
+        if i == totalMemSize:
+            p += "\n"
+            break
+        if j == framesPerLine:
+            p += "\n"
+            j = 0
+        p += memory[i]
+        i += 1
+        j += 1
+    for a in range(framesPerLine):
+        p += "="
+
+    print(p)
 
 def defrag():
     totalNumMoves = 0
@@ -81,8 +103,9 @@ def simulate():
 
 initMemory()
 printParams()
-parsefile(fileName)
-print("Done printing")
-sortArrivalQueue()
+printMemory()
+# parsefile(fileName)
+# print("Done printing")
+# sortArrivalQueue()
 
 
