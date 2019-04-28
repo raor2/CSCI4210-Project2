@@ -1,6 +1,7 @@
 from Process import Process
 import sys
 
+
 AQ = []
 EQ = []
 memory = []
