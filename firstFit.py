@@ -147,7 +147,7 @@ def findFirstSlot(size):
 
 
 def sortArrivalQueue():
-    AQ.sort(key=lambda x: x.arrivalTime, reverse=False)
+    AQ.sort(key=lambda x: (x.arrivalTime,x.pid), reverse=False)
 
 
 def firstFitPlace(p, t):
@@ -177,7 +177,7 @@ def addTime(s):
 
 
 def sortExitQueue():
-    EQ.sort(key=lambda x: x[1], reverse=False)
+     EQ.sort(key=lambda x: (x[1],x[0]), reverse=False)
 
 
 def calculateLargestSlot():

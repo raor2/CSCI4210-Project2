@@ -1,7 +1,6 @@
 from Process import Process
 import sys
 
-
 AQ = []
 EQ = []
 memory = []
@@ -11,7 +10,6 @@ totalMemSize = int(sys.argv[2],10)
 timeMemMove = int(sys.argv[3],10)
 largestOpenSlot = totalMemSize
 freeMemory = totalMemSize
-
 
 def parsefile(filename):
     data = open(filename).read()
@@ -24,10 +22,17 @@ def parsefile(filename):
                 AQ.append(Process(line[0], int(line[1]), int(term[0]), int(term[1])))
 
 def sortArrivalQueue():
-    AQ.sort(key=lambda x: x.arrivalTime, reverse=False)
+    AQ.sort(key=lambda x: (x.arrivalTime,x.pid), reverse=False)
+
+def sortExitQueue():
+    EQ.sort(key=lambda x: (x[1],x[0]), reverse=False)
 
 def printArrivalQueueContents():
     for p in AQ:
+        print(p)
+
+def printExitQueueContents():
+    for p in EQ:
         print(p)
 
 def initializeMemory():
@@ -48,13 +53,11 @@ def printMemory():
 		sys.stdout.write("=")
 	sys.stdout.write("\n")
 
-def sortExitQueue():
-    EQ.sort(key=lambda x: x[1], reverse=False)
-
 def defrag():
+    pidMoved = []
     totalNumMoves = 0
     while 1:
-        #print(memory)
+        # print(memory)
         stateChange = 0
         flag = 0
         numMove = 0
@@ -75,23 +78,39 @@ def defrag():
                 flag = 1
                 numMove += 1
             elif memory[x] == '.' and flag == 1:
-                numMove+=1
+                numMove += 1
             elif memory[x] != '.' and flag == 1:
                 flag = 0
                 currID = memory[x]
                 break
-            i+=1
+            i += 1
         if flag == 1:
-            return totalNumMoves
+            return totalNumMoves, pidMoved
         while 1:
             if i == totalMemSize or memory[i] != currID:
                 break
             else:
-                memory[i-numMove] = memory[i]
+                if memory[i] not in pidMoved:
+                    pidMoved.append(memory[i])
+                memory[i - numMove] = memory[i]
                 memory[i] = '.'
                 totalNumMoves += 1
-            i+=1
+            i += 1
 
+def addTime(s):
+    global EQ
+    global AQ
+    for p in AQ:
+        #print("BEFORE: " + str(p.arrivalTime))
+        p.arrivalTime += s
+        #print("AFTER: " + str(p.arrivalTime))
+
+    d = dict(EQ)
+    EQ = []
+    for x in d.keys():
+        d[x] += s
+        EQ.append((x,d[x]))
+    sortExitQueue()
 
 def removeFromMem(pid):
 	global freeMemory
@@ -121,7 +140,7 @@ def bestFit(process):
 		elif(curSize != 0 and memory[i] != "."):
 			if ( curSize >= process.memSize):
 				openSlots.append((curStart,curSize))
-				curSize = 0
+			curSize = 0
 	if ( curSize >= process.memSize):
 		openSlots.append((curStart,curSize))
 		curSize = 0
@@ -164,20 +183,31 @@ def simulate():
     while(AQ or EQ):
     	if(EQ and (time == EQ[0][1])):
     		process = EQ.pop(0)
-    		print("time "+str(time)+"ms: Process "+process[0]+" removed:")
+    		print("time " + str(time) + "ms: Process " + process[0] + " removed:")
     		removeFromMem(process[0])
     		calcLargestSlot()
     		printMemory()
     	elif(AQ and time == AQ[0].arrivalTime):
     		process = AQ.pop(0)
-    		print("time "+str(time)+"ms: Process "+process.pid+" arrived (requires "+str(process.memSize)+" frames)")
+    		print("time " + str(time) + "ms: Process " + process.pid + " arrived (requires " + str(process.memSize) + " frames)")
     		if(process.memSize > freeMemory):
-    			print("time "+str(time)+"ms: Cannot place process "+process.pid+" -- skipped!")
+    			print("time " + str(time) + "ms: Cannot place process " + process.pid + " -- skipped!")
     		else:
     			if( process.memSize > largestOpenSlot ):
-    				print("time "+str(time)+"ms: Cannot place process "+process.pid+" -- starting defragmentation")
+    				print("time " + str(time) + "ms: Cannot place process " + process.pid + " -- starting defragmentation")
     				memMoved = defrag()
-    				totalTimeIncrease = memMoved * timeMemMove
+    				totalTimeIncrease = memMoved[0] * timeMemMove
+    				time += totalTimeIncrease
+    				s = ""
+    				for i in range(len(memMoved[1])):
+    					if i == len(memMoved[1]) - 1:
+    						s += memMoved[1][i]
+    					else:
+    						s += memMoved[1][i]
+    						s += ", "
+    				print("time "+str(time)+"ms: Defragmentation complete (moved "+str(memMoved[0])+" frames: " + s + ")")
+    				addTime(totalTimeIncrease)
+    				sortArrivalQueue()
 
     			bestFit(process)
     			calcLargestSlot()
@@ -194,9 +224,7 @@ def simulate():
     		time = EQ[0][1]
     print("time " + str(time) + "ms: Simulator ended (Contiguous -- Best-Fit)")
 
-
-
-parsefile("p2-input02.txt")
+parsefile("p2-input04.txt")
 sortArrivalQueue()
 # printArrivalQueueContents()
 initializeMemory()
