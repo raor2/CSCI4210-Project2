@@ -1,4 +1,4 @@
-time 0ms: Simulator started (Contiguous -- Best-Fit)
+time 0ms: Simulator started (Contiguous -- Next-Fit)
 time 0ms: Process I arrived (requires 48 frames)
 time 0ms: Placed process I:
 ================================================================
@@ -50,4 +50,4 @@ time 480ms: Process I removed:
 ================================================================
 ................................................................
 ================================================================
-time 480ms: Simulator ended (Contiguous -- Best-Fit)
+time 480ms: Simulator ended (Contiguous -- Next-Fit)
