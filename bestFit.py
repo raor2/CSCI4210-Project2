@@ -130,7 +130,7 @@ def bestFit(process):
 	smallestSize = sys.maxint
 	for pair in openSlots:
 		# print("pair[0]: "+str(pair[0])+" pair[1]:"+str(pair[1]))
-		if(pair[1] == process.memSize):
+		if pair[1] == process.memSize :
 			smallestPos = pair[0]
 			smallestSize = pair[1]
 			break

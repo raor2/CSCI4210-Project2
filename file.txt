@@ -1,0 +1,131 @@
+time 0ms: Simulator started (Contiguous -- Best-Fit)
+time 0ms: Process A arrived (requires 45 frames)
+time 0ms: Placed process A:
+================================
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAA...................
+................................
+................................
+================================
+time 0ms: Process B arrived (requires 28 frames)
+time 0ms: Placed process B:
+================================
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAABBBBBBBBBBBBBBBBBBB
+BBBBBBBBB.......................
+................................
+================================
+time 0ms: Process C arrived (requires 58 frames)
+time 0ms: Cannot place process C -- skipped!
+time 0ms: Process D arrived (requires 86 frames)
+time 0ms: Cannot place process D -- skipped!
+time 0ms: Process H arrived (requires 14 frames)
+time 0ms: Placed process H:
+================================
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAABBBBBBBBBBBBBBBBBBB
+BBBBBBBBBHHHHHHHHHHHHHH.........
+................................
+================================
+time 100ms: Process I arrived (requires 24 frames)
+time 100ms: Placed process I:
+================================
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAABBBBBBBBBBBBBBBBBBB
+BBBBBBBBBHHHHHHHHHHHHHHIIIIIIIII
+IIIIIIIIIIIIIII.................
+================================
+time 350ms: Process A removed:
+================================
+................................
+.............BBBBBBBBBBBBBBBBBBB
+BBBBBBBBBHHHHHHHHHHHHHHIIIIIIIII
+IIIIIIIIIIIIIII.................
+================================
+time 400ms: Process A arrived (requires 45 frames)
+time 400ms: Placed process A:
+================================
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAABBBBBBBBBBBBBBBBBBB
+BBBBBBBBBHHHHHHHHHHHHHHIIIIIIIII
+IIIIIIIIIIIIIII.................
+================================
+time 435ms: Process J arrived (requires 13 frames)
+time 435ms: Placed process J:
+================================
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAABBBBBBBBBBBBBBBBBBB
+BBBBBBBBBHHHHHHHHHHHHHHIIIIIIIII
+IIIIIIIIIIIIIIIJJJJJJJJJJJJJ....
+================================
+time 450ms: Process A removed:
+================================
+................................
+.............BBBBBBBBBBBBBBBBBBB
+BBBBBBBBBHHHHHHHHHHHHHHIIIIIIIII
+IIIIIIIIIIIIIIIJJJJJJJJJJJJJ....
+================================
+time 480ms: Process I removed:
+================================
+................................
+.............BBBBBBBBBBBBBBBBBBB
+BBBBBBBBBHHHHHHHHHHHHHH.........
+...............JJJJJJJJJJJJJ....
+================================
+time 500ms: Process I arrived (requires 24 frames)
+time 500ms: Placed process I:
+================================
+................................
+.............BBBBBBBBBBBBBBBBBBB
+BBBBBBBBBHHHHHHHHHHHHHHIIIIIIIII
+IIIIIIIIIIIIIIIJJJJJJJJJJJJJ....
+================================
+time 550ms: Process Q arrived (requires 46 frames)
+time 550ms: Cannot place process Q -- starting defragmentation
+time 550ms: Placed process Q:
+================================
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBHHHH
+HHHHHHHHHHIIIIIIIIIIIIIIIIIIIIII
+IIJJJJJJJJJJJJJQQQQQQQQQQQQQQQQQ
+QQQQQQQQQQQQQQQQQQQQQQQQQQQQQ...
+================================
+time 975ms: Process I removed:
+================================
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBHHHH
+HHHHHHHHHH......................
+..JJJJJJJJJJJJJQQQQQQQQQQQQQQQQQ
+QQQQQQQQQQQQQQQQQQQQQQQQQQQQQ...
+================================
+time 1100ms: Process C arrived (requires 58 frames)
+time 1100ms: Cannot place process C -- skipped!
+time 1250ms: Process J removed:
+================================
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBHHHH
+HHHHHHHHHH......................
+...............QQQQQQQQQQQQQQQQQ
+QQQQQQQQQQQQQQQQQQQQQQQQQQQQQ...
+================================
+time 1350ms: Process D arrived (requires 86 frames)
+time 1350ms: Cannot place process D -- skipped!
+time 1400ms: Process H removed:
+================================
+BBBBBBBBBBBBBBBBBBBBBBBBBBBB....
+................................
+...............QQQQQQQQQQQQQQQQQ
+QQQQQQQQQQQQQQQQQQQQQQQQQQQQQ...
+================================
+time 1450ms: Process Q removed:
+================================
+BBBBBBBBBBBBBBBBBBBBBBBBBBBB....
+................................
+................................
+................................
+================================
+time 2650ms: Process B removed:
+================================
+................................
+................................
+................................
+................................
+================================
+time 2650ms: Simulator ended (Contiguous -- Best-Fit)
