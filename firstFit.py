@@ -282,9 +282,60 @@ def simulate():
     print("time " + str(time) + "ms: Simulator ended (Contiguous -- First-Fit)")
 
 
+def nonContigPlace(p,t):
+    size = p.memSize
+    i = 0
+    while size > 0:
+        if memory[i] == '.':
+            memory[i] = p.pid
+            i += 1
+            size -= 1
+        else:
+            i += 1
+    print("time " + str(t) + "ms: Placed process " + p.pid + ":")
+    printMemory()
+
+def simulateNonContig():
+    global EQ
+    global AQ
+    global time
+    global freeMemory
+    global largestSlot
+    print("time 0ms: Simulator started (Non-Contiguous)")
+
+    while len(AQ) > 0 or len(EQ) > 0:
+
+        if len(EQ) > 0 and time == EQ[0][1]:
+            freeMemory += removeFromMemory(EQ[0][0])
+            print("time " + str(time) + "ms: Process " + EQ[0][0] + " removed:")
+            printMemory()
+            EQ.pop(0)
+        elif len(AQ) > 0 and time == AQ[0].arrivalTime:
+            currentProcess = AQ.pop(0)
+            arrive(currentProcess, time)
+            if currentProcess.memSize > freeMemory:
+                skip(currentProcess)
+            else:
+                nonContigPlace(currentProcess, time)
+                EQ.append((currentProcess.pid, time + currentProcess.runTime))
+                sortExitQueue()
+                freeMemory = freeMemory - currentProcess.memSize
+        if AQ and EQ:
+            sortArrivalQueue()
+            time = min(AQ[0].arrivalTime, EQ[0][1])
+        elif AQ:
+            sortArrivalQueue()
+            time = AQ[0].arrivalTime
+        elif EQ:
+            sortArrivalQueue()
+            time = EQ[0][1]
+    print("time " + str(time) + "ms: Simulator ended (Non-Contiguous)")
+
+
 initMemory()
 
 parsefile(fileName)
-simulate()
+simulateNonContig()
+#simulate()
 # print("Done printing")
 # sortArrivalQueue()
