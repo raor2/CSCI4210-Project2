@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="50268e23-e24f-4a19-b5c1-6b6101950808" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bestFit.py" beforeDir="false" afterPath="$PROJECT_DIR$/bestFit.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project2.py" beforeDir="false" afterPath="$PROJECT_DIR$/project2.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,20 +24,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FirstFit.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="8" selection-start-line="6" selection-start-column="8" selection-end-line="29" />
-              <folding>
-                <element signature="e#0#27#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/nextFit.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="300" column="26" lean-forward="true" selection-start-line="300" selection-start-column="26" selection-end-line="300" selection-end-column="26" />
+            <state relative-caret-position="167">
+              <caret line="329" column="29" selection-start-line="329" selection-start-column="25" selection-end-line="329" selection-end-column="29" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
               </folding>
@@ -48,10 +34,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/nextFit.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="152" column="16" lean-forward="true" selection-start-line="152" selection-start-column="16" selection-end-line="152" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/project2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="52">
-              <caret line="13" column="28" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
+            <state relative-caret-position="323">
+              <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -62,8 +57,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bestFit.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="181" column="18" selection-start-line="181" selection-start-column="18" selection-end-line="181" selection-end-column="18" />
+            <state relative-caret-position="167">
+              <caret line="206" column="21" selection-start-line="206" selection-start-column="17" selection-end-line="206" selection-end-column="21" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
               </folding>
@@ -100,7 +95,6 @@
       <find>skipped</find>
       <find>EQ</find>
       <find>arrived</find>
-      <find>parse</find>
       <find>Cannot</find>
       <find>BEFORE</find>
       <find>calcu</find>
@@ -110,6 +104,17 @@
       <find>findFirstSlot</find>
       <find>self</find>
       <find>framePerLine</find>
+      <find>print(free</find>
+      <find>printMemory</find>
+      <find>frfe</find>
+      <find>freeMemory</find>
+      <find>calclargestSlot</find>
+      <find>larges</find>
+      <find>largestOpen</find>
+      <find>print(lar</find>
+      <find>defrag</find>
+      <find>parse</find>
+      <find>or</find>
     </findStrings>
     <replaceStrings>
       <replace>self.sortArrivalQueue()</replace>
@@ -125,11 +130,11 @@
       <list>
         <option value="$PROJECT_DIR$/Process.py" />
         <option value="$PROJECT_DIR$/firstFit.py" />
-        <option value="$PROJECT_DIR$/FirstFit.py" />
-        <option value="$PROJECT_DIR$/nextFit.py" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.py" />
         <option value="$PROJECT_DIR$/bestFit.py" />
+        <option value="$PROJECT_DIR$/FirstFit.py" />
         <option value="$PROJECT_DIR$/project2.py" />
+        <option value="$PROJECT_DIR$/nextFit.py" />
       </list>
     </option>
   </component>
@@ -220,7 +225,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/project2.py" />
-      <option name="PARAMETERS" value="32 288 p2-input03.txt 4" />
+      <option name="PARAMETERS" value="32 128 p2-input02.txt 3" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -371,18 +376,33 @@
       <option name="project" value="LOCAL" />
       <updated>1556484873034</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Should be finalized...">
+      <created>1556486181642</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1556486181642</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Updated after submitting">
+      <created>1556491275481</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1556491275481</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1533" height="875" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22781457" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.7479893" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.21581769" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3994638" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -428,16 +448,18 @@
     <MESSAGE value="Added other test files" />
     <MESSAGE value="Converted to a main class" />
     <MESSAGE value="Next Fit added to main file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Next Fit added to main file" />
+    <MESSAGE value="Should be finalized..." />
+    <MESSAGE value="Updated after submitting" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated after submitting" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/FirstFit.py">
+    <entry file="file://$PROJECT_DIR$/file.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="8" selection-start-line="6" selection-start-column="8" selection-end-line="29" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="294">
+          <caret line="167" column="4" selection-start-line="167" selection-start-column="4" selection-end-line="171" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -448,40 +470,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nextFit.py">
+    <entry file="file://$PROJECT_DIR$/project2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="300" column="26" lean-forward="true" selection-start-line="300" selection-start-column="26" selection-end-line="300" selection-end-column="26" />
+        <state relative-caret-position="323">
+          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
           <folding>
-            <element signature="e#0#27#0" expanded="true" />
+            <element signature="e#0#29#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.py">
+    <entry file="file://$PROJECT_DIR$/FirstFit.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="167" column="4" selection-start-line="167" selection-start-column="4" selection-end-line="171" selection-end-column="25" />
+        <state relative-caret-position="167">
+          <caret line="329" column="29" selection-start-line="329" selection-start-column="25" selection-end-line="329" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bestFit.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="181" column="18" selection-start-line="181" selection-start-column="18" selection-end-line="181" selection-end-column="18" />
+        <state relative-caret-position="167">
+          <caret line="206" column="21" selection-start-line="206" selection-start-column="17" selection-end-line="206" selection-end-column="21" />
           <folding>
             <element signature="e#0#27#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project2.py">
+    <entry file="file://$PROJECT_DIR$/nextFit.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="13" column="28" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="75">
+          <caret line="152" column="16" lean-forward="true" selection-start-line="152" selection-start-column="16" selection-end-line="152" selection-end-column="16" />
         </state>
       </provider>
     </entry>
