@@ -10,7 +10,7 @@ class BestFit:
 		global framesPerLine
 		global totalMemSize
 		global fileName
-		global memMoveTime
+		global timeMemMove
 		global freeMemory
 		global largestOpenSlot
 		global prevAddPos
@@ -29,7 +29,7 @@ class BestFit:
 		data = open(filename).read()
 		data = data.split('\n')
 		for line in data:
-			if line != "":
+			if line != "" and not line.startswith("#"):
 				line = line.split(' ')
 				for i in range(2, len(line)):
 					term = line[i].split('/')
@@ -54,19 +54,26 @@ class BestFit:
 			memory.append(".")
 
 	def printMemory(self):
-		global framesPerLine
-		for header in range(framesPerLine):
-			sys.stdout.write("=")
-		sys.stdout.write("\n")
+		i = 0
+		j = 0
+		p = ""
+		for a in range(framesPerLine):
+			p += "="
+		p += "\n"
+		while 1:
+			if i == totalMemSize:
+				p += "\n"
+				break
+			if j == framesPerLine:
+				p += "\n"
+				j = 0
+			p += memory[i]
+			i += 1
+			j += 1
+		for a in range(framesPerLine):
+			p += "="
+		print(p)
 
-		for pos in range(totalMemSize):
-			sys.stdout.write(memory[pos])
-			if (pos + 1) % framesPerLine == 0:
-				sys.stdout.write('\n')
-
-		for header in range(framesPerLine):
-			sys.stdout.write("=")
-		sys.stdout.write("\n")
 
 	def defrag(self):
 		pidMoved = []
@@ -113,6 +120,7 @@ class BestFit:
 				i += 1
 
 	def addTime(self, s):
+		global EQ, AQ
 		for p in AQ:
 			# print("BEFORE: " + str(p.arrivalTime))
 			p.arrivalTime += s
@@ -135,7 +143,7 @@ class BestFit:
 			if (memory[i] == "."):
 				# Either this is not the first one we found
 				if (curSize > 0):
-					curSize = curSize + 1
+					curSize += 1
 				# First position we found after a loaded memory seg
 				else:
 					curStart = i
@@ -159,12 +167,14 @@ class BestFit:
 			if (pair[1] < smallestSize):
 				smallestPos = pair[0]
 				smallestSize = pair[1]
-
-		freeMemory = freeMemory - process.memSize
+		# print("freeMemory: "+str(freeMemory) +" removed: "+str(process.memSize))
+		freeMemory -= process.memSize
+		# print("Equal: "+str(freeMemory))
 		for mem in range(process.memSize):
 			memory[smallestPos + mem] = process.pid
 
 	def calcLargestSlot(self):
+		global largestOpenSlot
 		counter = 0;
 		largestSlot = 0
 		for i in range(totalMemSize):
@@ -183,8 +193,9 @@ class BestFit:
 			if (memory[i] == pid):
 				memory[i] = "."
 				counter += 1
+		# print("freeMemory: " + str(freeMemory) + " removed: " + str(counter))
 		freeMemory += counter
-
+		# print("Equal : "+str(freeMemory))
 
 	def simulate(self):
 		global AQ, EQ, fileName, freeMemory, largestOpenSlot, timeMemMove
@@ -207,10 +218,11 @@ class BestFit:
 				if (process.memSize > freeMemory):
 					print("time " + str(time) + "ms: Cannot place process " + process.pid + " -- skipped!")
 				else:
+					self.calcLargestSlot()
 					if (process.memSize > largestOpenSlot):
 						print("time " + str(
 							time) + "ms: Cannot place process " + process.pid + " -- starting defragmentation")
-						memMoved = defrag()
+						memMoved = self.defrag()
 						totalTimeIncrease = memMoved[0] * timeMemMove
 						time += totalTimeIncrease
 						s = ""

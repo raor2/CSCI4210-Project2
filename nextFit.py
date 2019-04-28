@@ -1,54 +1,4 @@
 from Process import Process
-import sys
-
-
-AQ = []
-EQ = []
-memory = []
-
-framesPerLine = int(sys.argv[1])
-totalMemSize = int(sys.argv[2])
-fileName = sys.argv[3]
-memMoveTime = int(sys.argv[4])
-
-freeMemory = totalMemSize
-largestSlot = totalMemSize
-prevAddPos = 0
-time = 0
-
-
-def printMemory():
-    i = 0
-    j = 0
-    p = ""
-    for a in range(framesPerLine):
-        p += "="
-    p += "\n"
-    while 1:
-        if i == totalMemSize:
-            p += "\n"
-            break
-        if j == framesPerLine:
-            p += "\n"
-            j = 0
-        p += memory[i]
-        i += 1
-        j += 1
-    for a in range(framesPerLine):
-        p += "="
-
-    print(p)
-
-
-def defrag():
-    pidMoved = []
-    totalNumMoves = 0
-    while 1:
-        # print(memory)
-        stateChange = 0
-        flag = 0
-        numMove = 0
-        currID = '.'
 
 class NextFit:
 
@@ -105,6 +55,7 @@ class NextFit:
     def defrag(self):
         pidMoved = []
         totalNumMoves = 0
+
         while 1:
             # print(memory)
             stateChange = 0
@@ -134,6 +85,12 @@ class NextFit:
                     break
                 i += 1
             if flag == 1:
+                global prevAddPos
+                prevAddPos = 0
+                for i in range(totalMemSize):
+                    if memory[i] == '.':
+                        prevAddPos = i
+                        break
                 return totalNumMoves, pidMoved
             while 1:
                 if i == totalMemSize or memory[i] != currID:
@@ -145,6 +102,7 @@ class NextFit:
                     memory[i] = '.'
                     totalNumMoves += 1
                 i += 1
+
 
 
     def initMemory(self):
@@ -163,7 +121,7 @@ class NextFit:
         data = open(filename).read()
         data = data.split('\n')
         for line in data:
-            if line != "":
+            if line != "" and not line.startswith("#"):
                 line = line.split(' ')
                 for i in range(2, len(line)):
                     term = line[i].split('/')

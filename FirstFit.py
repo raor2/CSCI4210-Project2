@@ -117,7 +117,7 @@ class FirstFit:
 
         data = data.split('\n')
         for line in data:
-            if line != "":
+            if line != "" and not line.startswith("#"):
                 line = line.split(' ')
                 for i in range(2, len(line)):
                     term = line[i].split('/')
