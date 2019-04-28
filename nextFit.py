@@ -151,7 +151,7 @@ def findNextSlot(size):
     startingIndex = 0
 
     # Need +1 to include the prevAddPos
-    for i in range(0,prevAddPos+1):
+    for i in range(0,totalMemSize):
         if memory[i] == '.' and currentSize == 0:
             startingIndex = i
             currentSize = 1
