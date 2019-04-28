@@ -193,7 +193,7 @@ def addTime(s):
     for x in d.keys():
         d[x] += s
         EQ.append((x,d[x]))
-    sortExitQueue()
+    self.sortExitQueue()
 
 
 
@@ -268,17 +268,17 @@ def simulate():
                 
                 nextFitPlace(currentProcess, time)
                 EQ.append((currentProcess.pid, time + currentProcess.runTime))
-                sortExitQueue()
+                self.sortExitQueue()
                 freeMemory = freeMemory - currentProcess.memSize
                 calcLargestSlot()
         if AQ and EQ:
-            sortArrivalQueue()
+            self.sortArrivalQueue()
             time = min(AQ[0].arrivalTime, EQ[0][1])
         elif AQ:
-            sortArrivalQueue()
+            self.sortArrivalQueue()
             time = AQ[0].arrivalTime
         elif EQ:
-            sortArrivalQueue()
+            self.sortArrivalQueue()
             time = EQ[0][1]
     print("time " + str(time) + "ms: Simulator ended (Contiguous -- Next-Fit)")
 
