@@ -53,59 +53,80 @@ class NextFit:
 
 
     def defrag(self):
+        global memory,prevAddPos
         pidMoved = []
+        existing = dict()
         totalNumMoves = 0
-
-        while 1:
-            # print(memory)
-            stateChange = 0
-            flag = 0
-            numMove = 0
-            currID = '.'
-            i = 0
-            for x in range(totalMemSize):
-                if memory[x] == '.' and flag == 0:
-                    stateChange = 1
-                    flag = 1
-                if flag == 1 and memory[x] != '.':
-                    stateChange = 1
-                    break
-            if stateChange == 0:
-                return 0
-            flag = 0
-            for x in range(totalMemSize):
-                if memory[x] == '.' and flag == 0:
-                    flag = 1
-                    numMove += 1
-                elif memory[x] == '.' and flag == 1:
-                    numMove += 1
-                elif memory[x] != '.' and flag == 1:
-                    flag = 0
-                    currID = memory[x]
-                    break
-                i += 1
-            if flag == 1:
-                global prevAddPos
-                prevAddPos = 0
-                for i in range(totalMemSize):
-                    if memory[i] == '.':
-                        prevAddPos = i
-                        break
-                return totalNumMoves, pidMoved
-            while 1:
-                if i == totalMemSize or memory[i] != currID:
-                    break
-                else:
-                    if memory[i] not in pidMoved:
-                        pidMoved.append(memory[i])
-                    memory[i - numMove] = memory[i]
-                    memory[i] = '.'
+        slow = 0
+        for fast in range(totalMemSize):
+            if memory[fast] != '.':
+                if fast > slow:
                     totalNumMoves += 1
-                i += 1
+                    if memory[fast] not in existing:
+                        pidMoved.append(memory[fast])
+                        existing[memory[fast]] = 1
+                    memory[slow] = memory[fast]
+                    memory[fast] = '.'
+                slow += 1
+        # self.printMemory()
+        prevAddPos = slow
+        return totalNumMoves,pidMoved
+        # global memory
+        # pidMoved = []
+        # totalNumMoves = 0
+
+        # while 1:
+        #     # print(memory)
+        #     stateChange = 0
+        #     flag = 0
+        #     numMove = 0
+        #     currID = '.'
+        #     i = 0
+        #     for x in range(totalMemSize):
+        #         if memory[x] == '.' and flag == 0:
+        #             stateChange = 1
+        #             flag = 1
+        #         if flag == 1 and memory[x] != '.':
+        #             stateChange = 1
+        #             break
+        #     if stateChange == 0:
+        #         return 0
+        #     flag = 0
+        #     for x in range(totalMemSize):
+        #         if memory[x] == '.' and flag == 0:
+        #             flag = 1
+        #             numMove += 1
+        #         elif memory[x] == '.' and flag == 1:
+        #             numMove += 1
+        #         elif memory[x] != '.' and flag == 1:
+        #             flag = 0
+        #             currID = memory[x]
+        #             break
+        #         i += 1
+        #     if flag == 1:
+        #         global prevAddPos
+        #         prevAddPos = 0
+        #         for i in range(totalMemSize):
+        #             if memory[i] != '.':
+        #                 prevAddPos+=1
+        #             else:
+        #                 break
+        #         return totalNumMoves, pidMoved
+        #     while 1:
+        #         if i == totalMemSize or memory[i] != currID:
+        #             break
+        #         else:
+        #             if memory[i] not in pidMoved:
+        #                 pidMoved.append(memory[i])
+        #             memory[i - numMove] = memory[i]
+        #             memory[i] = '.'
+        #             totalNumMoves += 1
+        #         i += 1
 
 
 
     def initMemory(self):
+        global totalMemSize,memory
         for i in range(totalMemSize):
             memory.append('.')
 
@@ -121,8 +142,11 @@ class NextFit:
         data = open(filename).read()
         data = data.split('\n')
         for line in data:
-            if line != "" and not line.startswith("#"):
-                line = line.split(' ')
+            if line != "" and not line.startswith("#") and not line.startswith(" ") and not line.startswith("\t"):
+                if ' ' in line:
+                    line = line.split(' ')
+                elif '\t' in line:
+                    line = line.split('\t')
                 for i in range(2, len(line)):
                     term = line[i].split('/')
                     AQ.append(Process(line[0], int(line[1]), int(term[0]), int(term[1])))
@@ -150,13 +174,17 @@ class NextFit:
         global prevAddPos
         startingIndex = prevAddPos
         currentSize = 0
-        flag = 0
-        wrapped = False
+
+        if(size == 0):
+            return startingIndex
 
         for i in range(startingIndex,totalMemSize):
             if memory[i] == '.' and currentSize == 0:
                 startingIndex = i
                 currentSize = 1
+                if currentSize == size:
+                    prevAddPos = startingIndex + size
+                    return startingIndex
             elif memory[i] == '.' and currentSize > 0:
                 currentSize += 1
                 if currentSize == size:
@@ -176,6 +204,9 @@ class NextFit:
             if memory[i] == '.' and currentSize == 0:
                 startingIndex = i
                 currentSize = 1
+                if currentSize == size:
+                    prevAddPos = startingIndex + size
+                    return startingIndex
             elif memory[i] == '.' and currentSize > 0:
                 currentSize += 1
                 if currentSize == size:
@@ -295,13 +326,13 @@ class NextFit:
                     self.sortExitQueue()
                     freeMemory = freeMemory - currentProcess.memSize
                     self.calcLargestSlot()
-            if AQ and EQ:
+            if len(AQ) > 0 and len(EQ) > 0:
                 self.sortArrivalQueue()
                 time = min(AQ[0].arrivalTime, EQ[0][1])
-            elif AQ:
+            elif len(AQ) > 0:
                 self.sortArrivalQueue()
                 time = AQ[0].arrivalTime
-            elif EQ:
+            elif len(EQ) > 0:
                 self.sortArrivalQueue()
                 time = EQ[0][1]
         print("time " + str(time) + "ms: Simulator ended (Contiguous -- Next-Fit)")

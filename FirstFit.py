@@ -55,48 +55,65 @@ class FirstFit:
     def defrag(self):
         global memory
         pidMoved = []
+        existing = dict()
         totalNumMoves = 0
-        while 1:
-            # print(memory)
-            stateChange = 0
-            flag = 0
-            numMove = 0
-            currID = '.'
-            i = 0
-            for x in range(totalMemSize):
-                if memory[x] == '.' and flag == 0:
-                    stateChange = 1
-                    flag = 1
-                if flag == 1 and memory[x] != '.':
-                    stateChange = 1
-                    break
-            if stateChange == 0:
-                return 0
-            flag = 0
-            for x in range(totalMemSize):
-                if memory[x] == '.' and flag == 0:
-                    flag = 1
-                    numMove += 1
-                elif memory[x] == '.' and flag == 1:
-                    numMove += 1
-                elif memory[x] != '.' and flag == 1:
-                    flag = 0
-                    currID = memory[x]
-                    break
-                i += 1
-            if flag == 1:
-                return totalNumMoves, pidMoved
-            while 1:
-                if i == totalMemSize or memory[i] != currID:
-                    break
-                else:
-                    if memory[i] not in pidMoved:
-                        pidMoved.append(memory[i])
-                    memory[i - numMove] = memory[i]
-                    memory[i] = '.'
+        slow = 0
+        for fast in range(totalMemSize):
+            if memory[fast] != '.':
+                if fast > slow:
                     totalNumMoves += 1
+                    if memory[fast] not in existing:
+                        pidMoved.append(memory[fast])
+                        existing[memory[fast]] = 1
+                    memory[slow] = memory[fast]
+                    memory[fast] = '.'
+                slow += 1
+        # self.printMemory()
+        return totalNumMoves,pidMoved
+        # global memory
+        # pidMoved = []
+        # totalNumMoves = 0
+        # while 1:
+        #     # print(memory)
+        #     stateChange = 0
+        #     flag = 0
+        #     numMove = 0
+        #     currID = '.'
+        #     i = 0
+        #     for x in range(totalMemSize):
+        #         if memory[x] == '.' and flag == 0:
+        #             stateChange = 1
+        #             flag = 1
+        #         if flag == 1 and memory[x] != '.':
+        #             stateChange = 1
+        #             break
+        #     if stateChange == 0:
+        #         return 0
+        #     flag = 0
+        #     for x in range(totalMemSize):
+        #         if memory[x] == '.' and flag == 0:
+        #             flag = 1
+        #             numMove += 1
+        #         elif memory[x] == '.' and flag == 1:
+        #             numMove += 1
+        #         elif memory[x] != '.' and flag == 1:
+        #             flag = 0
+        #             currID = memory[x]
+        #             break
+        #         i += 1
+        #     if flag == 1:
+        #         return totalNumMoves, pidMoved
+        #     while 1:
+        #         if i == totalMemSize or memory[i] != currID:
+        #             break
+        #         else:
+        #             if memory[i] not in pidMoved:
+        #                 pidMoved.append(memory[i])
+        #             memory[i - numMove] = memory[i]
+        #             memory[i] = '.'
+        #             totalNumMoves += 1
 
-                i += 1
+        #         i += 1
 
 
     def initMemory(self):
@@ -117,8 +134,11 @@ class FirstFit:
 
         data = data.split('\n')
         for line in data:
-            if line != "" and not line.startswith("#"):
-                line = line.split(' ')
+            if len(line) > 0 and line[0].isupper():
+                if ' ' in line:
+                    line = line.split(' ')
+                elif '\t' in line:
+                    line = line.split('\t')
                 for i in range(2, len(line)):
                     term = line[i].split('/')
                     AQ.append(Process(line[0], int(line[1]), int(term[0]), int(term[1])))
@@ -153,7 +173,6 @@ class FirstFit:
                 flag = 1
                 currentSize += 1
                 startingIndex = i
-
             elif memory[i] == '.' and flag == 1:
                 currentSize += 1
                 if currentSize >= size:
@@ -162,6 +181,7 @@ class FirstFit:
                 flag = 0
                 if currentSize == size:
                     return startingIndex
+                currentSize = 0
 
 
     def sortArrivalQueue(self):
@@ -248,8 +268,8 @@ class FirstFit:
 
 
     def simulate(self):
-        self.initMemory()
         self.parsefile(fileName)
+        self.initMemory()
         global EQ
         global AQ
         global time
