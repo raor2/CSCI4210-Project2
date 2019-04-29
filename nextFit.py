@@ -200,7 +200,7 @@ class NextFit:
         startingIndex = 0
 
         # Need +1 to include the prevAddPos
-        for i in range(0,totalMemSize):
+        for i in range(totalMemSize):
             if memory[i] == '.' and currentSize == 0:
                 startingIndex = i
                 currentSize = 1

@@ -168,18 +168,20 @@ class FirstFit:
         flag = 0
 
         for i in range(totalMemSize):
-
-            if memory[i] == '.' and flag == 0:
-                flag = 1
-                currentSize += 1
+            if memory[i] == '.' and currentSize == 0:
                 startingIndex = i
-            elif memory[i] == '.' and flag == 1:
-                currentSize += 1
-                if currentSize >= size:
-                    return startingIndex
-            elif memory[i] != '.' and flag == 1:
-                flag = 0
+                currentSize = 1
                 if currentSize == size:
+                    prevAddPos = startingIndex + size
+                    return startingIndex
+            elif memory[i] == '.' and currentSize > 0:
+                currentSize += 1
+                if currentSize == size:
+                    prevAddPos = startingIndex + size
+                    return startingIndex
+            elif memory[i] != '.' and currentSize >0:
+                if currentSize == size:
+                    prevAddPos = startingIndex + size
                     return startingIndex
                 currentSize = 0
 
